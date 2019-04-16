@@ -1,0 +1,20 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "webpage that manages a home movie collection",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markpython86/started.git"
+  },
+  "author": "Mark Almanassra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markpython86/started/issues"
+  },
+  "homepage": "https://github.com/markpython86/started#readme"
+}
