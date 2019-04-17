@@ -1,12 +1,12 @@
 require("dotenv").config();
-var express = require("express");
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+const express = require("express");
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const routes = require("./routes");
+const models = require("./models");
 
-var models = require("./models");
-
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
@@ -20,18 +20,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Routes
-var routes = require("./routes/apiRoutes");
-
 app.use(routes);
 
 
-var syncOptions = { force: false };
+const syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+//need to add client/build static asset
 
 // Starting the server, syncing our models ------------------------------------/
 models.sequelize.sync(syncOptions).then(function() {
