@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Collection = sequelize.define('Collection', {
     title: DataTypes.STRING,
+    rating: DataTypes.INTEGER,
     year: DataTypes.INTEGER,
     genre: DataTypes.STRING,
     image: DataTypes.STRING

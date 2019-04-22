@@ -9,6 +9,9 @@ export default {
   getMovie: function(id) {
     return axios.get("/api/movies/" + id);
   },
+  findMovies: function(searched){
+    return axios.get('/api/movies/search/'+ searched)
+  },
   // Deletes the movie with the given id
   deleteMovie: function(id) {
     return axios.delete("/api/movies/" + id);

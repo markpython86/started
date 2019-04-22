@@ -1,4 +1,6 @@
 const db = require("../models");
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 // Defining methods for the moviesController
 module.exports = {
@@ -6,10 +8,15 @@ module.exports = {
     db.Collection
     .findAll({})
     .then((dbCollections) => res.json(dbCollections))
-    //   .find(req.query)
-    //   .sort({ date: -1 })
-    //   .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
+  },
+  search: function(req,res ){
+    db.Collection
+      .findAll({
+        where: { title: {[Op.substring]: req.params.searched }}
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Collection

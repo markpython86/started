@@ -17,6 +17,7 @@ module.exports = {
       [
         {
           title: "Last Action Hero",
+          rating:3,
           year: 1993,
           genre: "action",
           id: "tt0107362",
@@ -26,6 +27,7 @@ module.exports = {
         },
         {
           title: "Looney Tunes: Back in Action",
+          rating:3,
           year: "2003",
           genre: "action",
           id: "tt0318155",
@@ -35,6 +37,7 @@ module.exports = {
         },
         {
           title: "A Civil Action",
+          rating:3,
           year: "1998",
           genre: "action",
           id: "tt0120633",
@@ -44,6 +47,7 @@ module.exports = {
         },
         {
           title: "Missing in Action",
+          rating:3,
           year: "1984",
           genre: "action",
           id: "tt0087727",
@@ -53,6 +57,7 @@ module.exports = {
         },
         {
           title: "Action Jackson",
+          rating:3,
           year: "1988",
           genre: "action",
           id: "tt0094612",
@@ -62,6 +67,7 @@ module.exports = {
         },
         {
           title: "Missing in Action 2: The Beginning",
+          rating:3,
           year: "1985",
           genre: "action",
           id: "tt0089604",
@@ -71,6 +77,7 @@ module.exports = {
         },
         {
           title: "Class Action",
+          rating:3,
           year: "1991",
           genre: "action",
           id: "tt0101590",
@@ -80,6 +87,7 @@ module.exports = {
         },
         {
           title: "Action Point",
+          rating:3,
           year: "2018",
           genre: "action",
           id: "tt6495770",
@@ -89,6 +97,7 @@ module.exports = {
         },
         {
           title: "Braddock: Missing in Action III",
+          rating:3,
           year: "1988",
           genre: "action",
           id: "tt0094792",
@@ -98,6 +107,7 @@ module.exports = {
         },
         {
           title: "Action Replay",
+          rating:3,
           year: "2010",
           genre: "action",
           id: "tt1396208",

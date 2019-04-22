@@ -13,4 +13,8 @@ router
   .put(moviesController.update)
   .delete(moviesController.remove);
 
+router
+  .route("/search/:searched")
+  .get(moviesController.search)
+
 module.exports = router;

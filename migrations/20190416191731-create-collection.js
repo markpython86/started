@@ -14,6 +14,9 @@ module.exports = {
       year: {
         type: Sequelize.INTEGER
       },
+       rating: {
+        type: Sequelize.INTEGER
+      },
       genre: {
         type: Sequelize.STRING
       },

@@ -1,41 +1,35 @@
 import React from '../../../node_modules/react';
+import { Link } from "react-router-dom";
 import PropTypes from '../../../node_modules/prop-types';
 import { withStyles } from '../../../node_modules/@material-ui/core/styles';
-import Card from '../../../node_modules/@material-ui/core/Card';
-import CardHeader from '../../../node_modules/@material-ui/core/CardHeader';
-// import CardMedia from '../../../node_modules/@material-ui/core/CardMedia';
-import CardContent from '../../../node_modules/@material-ui/core/CardContent';
+import ButtonBase from "@material-ui/core/ButtonBase";
+import Rating from 'material-ui-rating';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import IconButton from '../../../node_modules/@material-ui/core/IconButton';
 import Typography from '../../../node_modules/@material-ui/core/Typography';
-import red from '../../../node_modules/@material-ui/core/colors/red';
-import MoreVertIcon from '../../../node_modules/@material-ui/icons/MoreVert';
 import "./style.css";
 
 const styles = theme => ({
-  card: {
-    width: '30.33%',
-    margin: '13px'
+  root: {
+    flexGrow: 1
   },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+  
+  paper: {
+    padding: theme.spacing.unit * 2,
+    margin: "auto",
+    maxWidth: 500
   },
-  actions: {
-    display: 'flex',
+  image: {
+    width: 128,
+    height: 128
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%"
+  }
 });
 
 
@@ -44,6 +38,7 @@ class movieCard extends React.Component {
     expanded: false,
     title: '',
     year:'',
+    rating:'',
     genre:'',
     image:''
 
@@ -61,6 +56,7 @@ class movieCard extends React.Component {
   loadContent = () =>{
     this.setState({
       title: this.props.title,
+      rating: this.props.rating,
       year: this.props.year,
       genre: this.props.genre,
       image: this.props.image
@@ -69,31 +65,54 @@ class movieCard extends React.Component {
 
   render() {
     const { classes } = this.props;
+    
 
     return (
-      <Card className={classes.card}>
-        <CardHeader
-
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={this.state.title}
-          subheader={this.state.year}
-        />
-        <img
-          className='image'
-          src={this.state.image}
-          alt="Paella dish"
-        />
-        <CardContent>
-          <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
-          </Typography>
-        </CardContent>
-      </Card>
+      <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container spacing={16}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img
+                className={classes.image}
+                alt="complex"
+                src={this.state.image}
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={16}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  Title: {this.state.title}
+                </Typography>
+                <Typography gutterBottom>
+                  Genre: {this.state.genre}
+                </Typography>
+                <Typography color="textSecondary">Year: {this.state.year}</Typography>
+              </Grid>
+              <Grid item>
+               <Rating
+                    value={parseFloat(this.state.rating)}
+                    max={5}
+                    readOnly={true}
+                    // iconFilled={true}
+                    onChange={(i) => console.log(i)}
+                  />
+              </Grid>
+            </Grid>
+              <Grid item>
+                <Link style={{ textDecoration: 'none' }} to="/movie">
+                  <IconButton>
+                    <i className="material-icons">edit</i>
+                  </IconButton>
+                </Link>
+              </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+        
+    </div>
     );
   }
 }
