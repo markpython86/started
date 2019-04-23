@@ -18,12 +18,12 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
-  
+
 });
 
 class App extends Component {
   state = {
-    
+    noMovieFound: true,
     movies: [],
     searched: '',
   };
@@ -34,25 +34,30 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
-    this.loadMovies();
-  }
+  // componentDidMount() {
+  //   // this.loadMovies();
+  // }
 
-  saveSearched = (search) =>{
-    this.setState({searched: search})
+  saveSearched = (search) => {
+    this.setState({ searched: search })
   }
 
   loadMovies = () => {
     API.getMovies()
-      .then(res =>
-        this.setState({ movies: res.data})
-      )
+      .then(res => {
+        this.setState({ movies: res.data })
+      })
       .catch(err => console.log(err));
   };
-  findMovie = () =>{
-    console.log(this.state.searched)
+  findMovie = () => {
     API.findMovies(this.state.searched)
-      .then((res) =>   this.setState({ movies: res.data}))
+      .then((res) => {
+        if (res.data.length === 0) {
+          this.setState({ noMovieFound: false })
+        } else {
+          this.setState({ movies: res.data, noMovieFound: true })
+        }
+      })
       .catch(err => console.log(err));
   }
   deleteMovie = id => {
@@ -60,23 +65,24 @@ class App extends Component {
       .then(() => this.loadMovies())
       .catch(err => console.log(err));
   };
+
+
   render() {
     const { classes } = this.props;
-    // const { spacing } = this.state;
     return (
-      
+
       <div className="App">
-       <Nav/>
-       
+        <Nav />
+
         <header className="App-header">
-        <SearchBar 
-        saveSearched={this.saveSearched}
-        findMovie={this.findMovie}
-        />
-         <div className={classes.root}>
-      <Grid container spacing={8}>
-          {
-                (this.state.movies.length === 0) ?
+          <SearchBar
+            saveSearched={this.saveSearched}
+            findMovie={this.findMovie}
+          />
+          <div className={classes.root}>
+            <Grid container spacing={8}>
+              {
+                (!this.state.noMovieFound) ?
                   (
                     <Grid className={'card'} container item xs={12}>
                       <MovieCard
@@ -85,27 +91,25 @@ class App extends Component {
                       />
                     </Grid>)
                   :
-                  (this.state.movies.map((movie ,index) => (
-                    <Grid key={index} className={'card'} container item lg={4} md={6} xs={12} sm={12}>
-                      <MovieCard
-                        key={movie.id}
-                        id={movie.id}
-                        title={movie.title}
-                        genre={movie.genre}
-                        image={movie.image}
-                        year={movie.year}
-                        rating={movie.rating}
-                      />
-                    </Grid>
-                  )))
-
-          }
-            
-          </Grid>
-        {/* </Grid */}
-        </div>
+                  (
+                    this.state.movies.map((movie, index) => (
+                      <Grid key={index} className={'card'} container item lg={4} md={6} xs={12} sm={12}>
+                        <MovieCard
+                          key={movie.id}
+                          id={movie.id}
+                          title={movie.title}
+                          genre={movie.genre}
+                          image={movie.image}
+                          year={movie.year}
+                          rating={movie.rating}
+                        />
+                      </Grid>
+                    )))
+              }
+            </Grid>
+          </div>
         </header>
-        
+
       </div>
     );
   }
