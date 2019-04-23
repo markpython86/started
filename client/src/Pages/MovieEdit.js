@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Nav from '../components/Nav';
+
 import SearchBar from '../components/SearchBar';
 import { withStyles } from '@material-ui/core/styles';
 // import API from "../utils/API";
@@ -50,8 +51,8 @@ class App extends Component {
           <Grid container className={classes.root} spacing={16}>
         <Grid item xs={12}>
           <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-            Editing Page
-          </Grid>
+            
+           </Grid>
         </Grid>
         </Grid>
         </header>

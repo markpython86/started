@@ -19,5 +19,9 @@ export default {
   // Saves a movie to the database
   saveMovie: function(movieData) {
     return axios.post("/api/movies", movieData);
+  },
+  // Update a movie to the database
+  updateMovie: function(id, movieData) {
+    return axios.put("/api/movies/"+id, movieData);
   }
 };
