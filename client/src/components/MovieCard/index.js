@@ -19,7 +19,7 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     margin: "auto",
-    maxWidth: 500
+    width: 500
   },
   image: {
     width: 128,
@@ -52,6 +52,7 @@ class movieCard extends React.Component {
     direction: 'row',
     justify: 'center',
     alignItems: 'center',
+    
 
 
   };
@@ -69,11 +70,14 @@ class movieCard extends React.Component {
   };
 
   updateCard = (id, value) => {
-
-    // console.log('id',id)
-    // console.log('value', value)
     API.updateMovie(id, value)
       .then((res) => console.log(res))//this.setState({ movies: res.data}))
+      .catch(err => console.log(err));
+  }
+
+  deleteCard = (id) => {
+    API.deleteMovie(id)
+    .then((res) => this.props.loadMovies())//this.setState({ movies: res.data}))
       .catch(err => console.log(err));
   }
 
@@ -114,7 +118,7 @@ class movieCard extends React.Component {
                         id="standard-multiline-flexible"
                         multiline
                         rowsMax="3"
-                        label="title"
+                        label="Title"
                         className={classes.textField}
                         value={this.state.title}
                         onChange={this.handleChange('title')}
@@ -124,7 +128,7 @@ class movieCard extends React.Component {
                     <Grid item>
                       <TextField
                         id="standard-name"
-                        label="genre"
+                        label="Genre"
                         className={classes.textField}
                         value={this.state.genre}
                         onChange={this.handleChange('genre')}
@@ -134,7 +138,7 @@ class movieCard extends React.Component {
                     <Grid item>
                       <TextField
                         id="standard-number"
-                        label="year"
+                        label="Year"
                         className={classes.textField}
                         type="number"
                         value={this.state.year}
@@ -179,12 +183,20 @@ class movieCard extends React.Component {
 
               </Grid>
               {!this.state.isInEditMode ?
+              <div>
                 <Grid item>
                   <IconButton onClick={() => this.changeEditMode()}>
                     <i className="material-icons">edit</i>
                   </IconButton>
                 </Grid>
+                <Grid item>
+                  <IconButton onClick={() => this.deleteCard(this.state.id)}>
+                   <i className="material-icons">delete_forever</i>
+                  </IconButton>
+                </Grid>
+                </div>
                 :
+              <div>
                 <Grid item>
                   <IconButton style={{ color: 'rgba(0, 0, 0, 0.78)' }} onClick={() => {
                     this.updateCard(this.state.id, newState)
@@ -194,10 +206,16 @@ class movieCard extends React.Component {
                     <i className="material-icons">check</i>
                   </IconButton>
                 </Grid>
+                <Grid item>
+                  <IconButton onClick={() => this.deleteCard(this.state.id)}>
+                   <i className="material-icons">delete_forever</i>
+                  </IconButton>
+                </Grid>
+                </div>
               }
             </Grid>
-          </Grid>
           {/* </Grid> */}
+          </Grid>
         </Paper>
 
       </div>

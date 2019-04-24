@@ -6,6 +6,9 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import Modal from '../NewCard'
 
 const styles = {
   root: {
@@ -38,10 +41,13 @@ function CustomizedInputBase(props) {
     <Paper className={classes.root} elevation={1}>
       <InputBase onChange={(i)=> props.saveSearched(i.target.value)} className={classes.input} placeholder="Search Your Favorite Movie" />
       <Divider className={classes.divider} />
+      <Tooltip disableFocusListener aria-label="Search" title="Search">
       <IconButton onClick={()=> props.findMovie()} className={classes.iconButton} aria-label="Search">
         <SearchIcon />
       </IconButton>
-      
+      </Tooltip>
+      <Divider className={classes.divider} />
+      <Modal />
     </Paper>
   );
 }

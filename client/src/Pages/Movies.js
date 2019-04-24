@@ -26,6 +26,7 @@ class App extends Component {
     noMovieFound: true,
     movies: [],
     searched: '',
+    movieNavBtn: false
   };
 
   handleChange = key => (event, value) => {
@@ -33,10 +34,6 @@ class App extends Component {
       [key]: value,
     });
   };
-
-  // componentDidMount() {
-  //   // this.loadMovies();
-  // }
 
   saveSearched = (search) => {
     this.setState({ searched: search })
@@ -72,13 +69,17 @@ class App extends Component {
     return (
 
       <div className="App">
-        <Nav />
+        <Nav showMovies={this.loadMovies}  movieNavBtn={this.state.movieNavBtn} />
 
         <header className="App-header">
+        
           <SearchBar
             saveSearched={this.saveSearched}
             findMovie={this.findMovie}
+            
           />
+          
+          
           <div className={classes.root}>
             <Grid container spacing={8}>
               {
@@ -102,6 +103,7 @@ class App extends Component {
                           image={movie.image}
                           year={movie.year}
                           rating={movie.rating}
+                          loadMovies={this.loadMovies}
                         />
                       </Grid>
                     )))
@@ -109,7 +111,6 @@ class App extends Component {
             </Grid>
           </div>
         </header>
-
       </div>
     );
   }

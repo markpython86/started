@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import DropDown from './DropDown'
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -82,19 +82,12 @@ function SearchAppBar(props) {
             Material-UI
           </Typography>
           <div className={classes.grow} />
-          <DropDown color="white"/>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </div> */}
+         
+          <Button onClick={() => {
+            props.showMovies()
+            }} color="inherit">Show All Movies</Button>
+          
+          
         </Toolbar>
       </AppBar>
     </div>
