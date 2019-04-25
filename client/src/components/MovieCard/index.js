@@ -195,7 +195,7 @@ class movieCard extends React.Component {
                   </IconButton>
                 </Grid>
                 <Grid item>
-                  <IconButton style={{ color: '#f50057', background: 'rgba(0, 0, 0, 0.2)', marginTop: '25px' }} onClick={() => this.deleteCard(this.state.id)}>
+                  <IconButton style={{ color: '#f50057', background: 'rgba(0, 0, 0, 0.2)', marginTop: '53px' }} onClick={() => this.deleteCard(this.state.id)}>
                     <i className="material-icons">delete_forever</i>
                   </IconButton>
                 </Grid>

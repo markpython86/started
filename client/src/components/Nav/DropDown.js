@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
+import './style.css'
 
 const styles = theme => ({
   button: {
@@ -49,14 +50,15 @@ class ControlledOpenSelect extends React.Component {
 
     return (
        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">Sort By</InputLabel>
+          <InputLabel style={{color: '#FFF'}} htmlFor="age-native-helper">Sort By</InputLabel>
           <NativeSelect
+          style={{borderColor: '#FFF'}}
             value={this.state.sortBy}
             onChange={this.handleChange('sortBy')}
             input={<Input name="age" id="age-native-helper" />}
           >
             <option value="" />
-            <option value={'Alpha'}>Alphabatically</option>
+            <option value={'Alpha'}>A to Z</option>
             <option value={'Year'}>Year</option>
             <option value={'Genre'}>Genre</option>
           </NativeSelect>

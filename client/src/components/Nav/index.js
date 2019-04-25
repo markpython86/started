@@ -17,6 +17,9 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -76,19 +79,19 @@ function SearchAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+          {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            Material-UI
+            Movie Search
           </Typography>
           <div className={classes.grow} />
 
 
           <DropDown setSort={props.setSort}/>
-          <Button onClick={() => {
+          <Button variant="contained" className={classes.button} onClick={() => {
             props.showMovies()
-            }} color="inherit">Show All Movies</Button>
+            }} >Show All Movies</Button>
           
           
         </Toolbar>

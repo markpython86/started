@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
+import NoMovieCard from '../components/MovieCard/NoMovieCard';
 import Grid from '@material-ui/core/Grid';
 import Nav from '../components/Nav';
 import SearchBar from '../components/SearchBar';
@@ -83,9 +84,9 @@ class App extends Component {
         })
         break;
         case 'Genre':
-        inputState.sort(function (a, b) {
-          if (a.genre.toLowerCase() < b.genre.toLowerCase()) return -1;
-          if (a.genre.toLowerCase() > b.genre.toLowerCase()) return 1;
+        inputState.sort(function (obj1, obj2) {
+          if (obj1.genre.toLowerCase() < obj2.genre.toLowerCase()) return -1;
+          if (obj1.genre.toLowerCase() > obj2.genre.toLowerCase()) return 1;
           return 0;
         })
         break;
@@ -121,18 +122,13 @@ class App extends Component {
             findMovie={this.findMovie}
             
           />
-          
-          
           <div className={classes.root}>
             <Grid container spacing={8}>
               {
                 (!this.state.noMovieFound) ?
                   (
                     <Grid className={'card'} container item xs={12}>
-                      <MovieCard
-                        title={'No movie Found'}
-                        image={"https://www.smileysapp.com/emojis/sorry-emoticon.png"}
-                      />
+                      <NoMovieCard/>
                     </Grid>)
                   :
                   (
