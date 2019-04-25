@@ -26,14 +26,23 @@ class App extends Component {
     noMovieFound: true,
     movies: [],
     searched: '',
-    movieNavBtn: false
+    movieNavBtn: false,
+    sortList: ''
   };
+
+  componentDidMount(){
+
+  }
 
   handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
     });
   };
+
+  setSort = (value) => {
+    this.setState({sortList: value})
+  }
 
   saveSearched = (search) => {
     this.setState({ searched: search })
@@ -63,13 +72,47 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  sortState = (inputState) => {
+    
+    switch (this.state.sortList) {
+      case 'Alpha':
+        inputState.sort(function (a, b) {
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+          return 0;
+        })
+        break;
+        case 'Genre':
+        inputState.sort(function (a, b) {
+          if (a.genre.toLowerCase() < b.genre.toLowerCase()) return -1;
+          if (a.genre.toLowerCase() > b.genre.toLowerCase()) return 1;
+          return 0;
+        })
+        break;
+      case 'Year':
+        inputState.sort(function (obj1, obj2) {
+          // Ascending: first age less than the previous
+          return obj1.year - obj2.year;
+        });
+        break;
+
+      default:
+        break;
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
+    this.sortState(this.state.movies)
+    console.log(this.state.sortList)
+
+    
+    
     return (
 
       <div className="App">
-        <Nav showMovies={this.loadMovies}  movieNavBtn={this.state.movieNavBtn} />
+        <Nav setSort={this.setSort} showMovies={this.loadMovies}  movieNavBtn={this.state.movieNavBtn} />
 
         <header className="App-header">
         
@@ -93,6 +136,9 @@ class App extends Component {
                     </Grid>)
                   :
                   (
+                     
+
+                    // { items }
                     this.state.movies.map((movie, index) => (
                       <Grid key={index} className={'card'} container item lg={4} md={6} xs={12} sm={12}>
                         <MovieCard
@@ -106,7 +152,8 @@ class App extends Component {
                           loadMovies={this.loadMovies}
                         />
                       </Grid>
-                    )))
+                    ))
+                    )
               }
             </Grid>
           </div>

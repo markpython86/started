@@ -104,27 +104,31 @@ class SimpleModal extends React.Component {
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
+                    <div style={getModalStyle()} className={classes.paper + ' newCard'}>
 
                         <Grid item >
                             <Typography variant="h6" id="modal-title">
-                                Text in a modal
-            </Typography>
-                            <IconButton style={{ left: '450px', top: '-36px' }} onClick={() => {
+                                Add a new movie
+                            </Typography>
+                            <Grid item >
+                            <IconButton style={{ color: '#57C239',left: '400px', top: '-36px' }} onClick={() => {
                                 this.saveCard(newState)
                                 this.handleClose()
-
                             }}>
-                                <i className="material-icons">check</i>
+                                <i className="material-icons">save</i>
                             </IconButton>
+                            <IconButton style={{ color: '#f50057',left: '411px', top: '-36px' }} onClick={() => {
+                                this.handleClose()
+                            }}>
+                                <i className="material-icons">cancel</i>
+                            </IconButton>
+                            </Grid>
                         </Grid>
-
                         <Grid container spacing={8}>
-
                             <Grid item>
                                 <TextField
                                     id="standard-name"
-                                    label="image"
+                                    label="Movie Image URL"
                                     className={classes.textField}
                                     value={this.state.image}
                                     onChange={this.handleChange('image')}
@@ -136,7 +140,7 @@ class SimpleModal extends React.Component {
                                     id="standard-multiline-flexible"
                                     multiline
                                     rowsMax="3"
-                                    label="title"
+                                    label="Movie Title"
                                     className={classes.textField}
                                     value={this.state.title}
                                     onChange={this.handleChange('title')}
@@ -146,7 +150,7 @@ class SimpleModal extends React.Component {
                             <Grid item>
                                 <TextField
                                     id="standard-name"
-                                    label="genre"
+                                    label="Movie Genre"
                                     className={classes.textField}
                                     value={this.state.genre}
                                     onChange={this.handleChange('genre')}
@@ -156,7 +160,7 @@ class SimpleModal extends React.Component {
                             <Grid item>
                                 <TextField
                                     id="standard-number"
-                                    label="year"
+                                    label="Year"
                                     className={classes.textField}
                                     type="number"
                                     value={this.state.year}

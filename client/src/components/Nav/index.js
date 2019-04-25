@@ -9,6 +9,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import "./style.css";
+import DropDown from './DropDown';
 const styles = theme => ({
   root: {
     width: '100%',
@@ -82,7 +83,9 @@ function SearchAppBar(props) {
             Material-UI
           </Typography>
           <div className={classes.grow} />
-         
+
+
+          <DropDown setSort={props.setSort}/>
           <Button onClick={() => {
             props.showMovies()
             }} color="inherit">Show All Movies</Button>

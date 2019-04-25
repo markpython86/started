@@ -1,93 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+  button: {
+    display: 'block',
+    marginTop: theme.spacing.unit * 2,
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-    color: 'white'
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
+  select: {
+        '&:before': {
+            borderColor: 'white',
+        },
+        '&:after': {
+            borderColor: 'white',
+        }
+    },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
   },
 });
 
-const categories = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
-class TextFields extends React.Component {
+class ControlledOpenSelect extends React.Component {
   state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
+    sortBy: '',
+    open: false,
   };
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+    this.props.setSort(event.target.value)
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
   };
 
   render() {
     const { classes } = this.props;
+    console.log(this.props)
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        
-        <TextField
-          id="standard-select-currency-native"
-          select
-          label="Sort By"
-          className={classes.textField}
-          value={this.state.currency}
-          onChange={this.handleChange('currency')}
-          SelectProps={{
-            native: true,
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          margin="normal"
-        >
-          {categories.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
-        
-      </form>
+       <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="age-native-helper">Sort By</InputLabel>
+          <NativeSelect
+            value={this.state.sortBy}
+            onChange={this.handleChange('sortBy')}
+            input={<Input name="age" id="age-native-helper" />}
+          >
+            <option value="" />
+            <option value={'Alpha'}>Alphabatically</option>
+            <option value={'Year'}>Year</option>
+            <option value={'Genre'}>Genre</option>
+          </NativeSelect>
+          {/* <FormHelperText>Some important helper text</FormHelperText> */}
+        </FormControl>
     );
   }
 }
 
-TextFields.propTypes = {
+ControlledOpenSelect.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(ControlledOpenSelect);
