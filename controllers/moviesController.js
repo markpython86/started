@@ -36,7 +36,8 @@ module.exports = {
       title: req.body.title,
       year: req.body.year,
       genre: req.body.genre,
-      image: req.body.image
+      image: req.body.image,
+      rating: req.body.rating
     }, {
       where: {
         id: req.body.id

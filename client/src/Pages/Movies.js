@@ -31,9 +31,7 @@ class App extends Component {
     sortList: ''
   };
 
-  componentDidMount(){
 
-  }
 
   handleChange = key => (event, value) => {
     this.setState({
@@ -106,17 +104,11 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     this.sortState(this.state.movies)
-    console.log(this.state.sortList)
 
-    
-    
     return (
-
       <div className="App">
         <Nav setSort={this.setSort} showMovies={this.loadMovies}  movieNavBtn={this.state.movieNavBtn} />
-
         <header className="App-header">
-        
           <SearchBar
             saveSearched={this.saveSearched}
             findMovie={this.findMovie}

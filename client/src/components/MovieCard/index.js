@@ -68,13 +68,13 @@ class movieCard extends React.Component {
 
   updateCard = (id, value) => {
     API.updateMovie(id, value)
-      .then((res) => console.log(res))//this.setState({ movies: res.data}))
+      .then(this.props.loadMovies())
       .catch(err => console.log(err));
   }
 
   deleteCard = (id) => {
     API.deleteMovie(id)
-      .then((res) => this.props.loadMovies())//this.setState({ movies: res.data}))
+      .then((res) => this.props.loadMovies())
       .catch(err => console.log(err));
   }
 
@@ -162,7 +162,7 @@ class movieCard extends React.Component {
                     max={5}
                     readOnly={false}
                     // iconFilled={true}
-                    onChange={(i) => console.log(i)}
+                    onChange={(i) => this.setState({rating: i})}
                   />
                 </Grid>
               </Grid>
@@ -182,7 +182,7 @@ class movieCard extends React.Component {
                     max={5}
                     readOnly={true}
                     // iconFilled={true}
-                    onChange={(i) => console.log(i)}
+                    // onChange={(i) => this.setState({rating: i})}
                   />
                 </Grid>
               </Grid>

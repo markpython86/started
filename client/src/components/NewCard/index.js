@@ -78,11 +78,8 @@ class SimpleModal extends React.Component {
     };
 
     saveCard = (value) => {
-
-        // console.log('id',id)
-        console.log('value', value)
         API.saveMovie(value)
-            .then((res) => console.log(res))//this.setState({ movies: res.data}))
+            .then()
             .catch(err => console.log(err));
     }
 
